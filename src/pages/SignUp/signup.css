@@ -1,0 +1,28 @@
+.login-form{
+      display: flex;
+      flex-direction: column;
+}
+
+.login-form input{
+      border:none;
+      outline: none;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 8px;
+      color: black;
+}
+
+.myForm{
+      width: 40vw;
+}
+
+@media  only screen and (max-width:769px) {
+      .myForm{
+            width: 60vw;
+      }
+}
+@media  only screen and (max-width:500px) {
+      .myForm{
+            width: 100vw;
+      }
+}

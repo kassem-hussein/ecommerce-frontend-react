@@ -1,0 +1,49 @@
+.contact{
+      display:flex;
+      justify-content: space-evenly;
+
+}
+.contact-us-item{
+      display: flex;
+      justify-content:flex-start;
+      align-items: baseline;
+      text-align: center;
+      gap: 10px;
+      margin:40px;
+}
+.contact-form{
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      gap:5px;
+      
+}
+.contact-form input,.contact-form textarea{
+      border:none;
+      outline: none;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 8px;
+      color: black;
+}
+.contact-us-item div i{
+      color:var(--orange)
+}
+@media only screen and (max-width:685px) {
+      .contact{
+            flex-direction: column;
+            align-items: center;
+      }
+      .contact-form{
+            
+            width: 70%;
+            
+            
+      }
+      .contact-info{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+      }
+}

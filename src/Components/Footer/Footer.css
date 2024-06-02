@@ -1,0 +1,34 @@
+.footer{
+      background-color: #204254;
+      color:white;
+      width: 100%;
+      min-height: 240px;
+      margin-top:50px;
+      padding: 50px;
+}
+.footer-link{
+      color:white;
+}
+.quick-link-title{
+      font-size: 20px;
+      font-weight: 400;
+}
+.footer-brand{
+      font-size: var(--font-24);
+      font-weight: 600;
+}
+.footer-icon{
+      font-size: var(--font-24);
+      padding: 4px;
+}
+.footer-copyright{
+      text-align: center;
+      margin-top: 30px;
+      font-size: 16px;
+}
+.footer-brand-desc{
+      color:var(--orange)
+}
+.footer-link:hover{
+      color:var(--orange);
+}

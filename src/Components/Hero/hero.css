@@ -1,0 +1,25 @@
+.hero{
+      background-color:#204254;
+      width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color:white;
+}
+.hero-t{
+      color:var(--orange)
+}
+
+
+@media only screen and (max-width:687px) {
+      .hero img{
+            width: 200px;
+      }
+      /* .hero{
+            justify-content: space-around;
+      }*/
+       .hero div{
+            padding-left: 10px;
+      }
+}
