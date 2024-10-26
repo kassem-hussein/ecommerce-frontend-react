@@ -18,7 +18,7 @@ const SignUp = () => {
             alert('email already exits')
             return 
       }
-      if(username.length<8){
+      if(username.length > 8){
             alert('username al most upper 8 char')
             return 
       }
