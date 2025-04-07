@@ -36,7 +36,7 @@ const Home = () => {
                               <div key={index} className='service'  style={{backgroundColor:s.bg}}>
                                     <i className={`${s.icon} service-icon`}></i>
                                     <div className="service-info">
-                                    <h5 className='service-info-title'>${s.title}</h5>
+                                    <h5 className='service-info-title'>{s.title}</h5>
                                     <p>{s.subtitle}</p>
                               </div>
                        </div> )
