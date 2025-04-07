@@ -5,3 +5,5 @@ export {default as Product} from './product/Product'
 export {default as DisplayProducts} from './displayProducts/DisplayProducts';
 export {default as Review} from './Review/Review'
 export {default as Steps} from  './proccess/Process'
+export {default as CardInput} from './PaymentCardInfo/PaymentCardInfo'
+export {default as SearchComponent} from './Search/Search'

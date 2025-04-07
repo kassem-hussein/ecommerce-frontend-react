@@ -5,8 +5,6 @@
       width: 50vw;
 }
 .summary{
-      width:30vw;
-      height: fit-content;
       padding: 10px;
       border: 1px solid #eee;
       border-radius: 5px;
@@ -18,12 +16,7 @@
             width: 80vw;
            
       }
-      .summary{
-            width:50vw;
-            
-           
-            
-      }
+
       .myWapper{
             justify-content: center !important;
             align-items: center !important;

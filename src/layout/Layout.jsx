@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import {Header,Footer} from '../Components/index'
-import {Home,Cart, Heart, P404,Product,Shop, About, Contact, Payment, Sign, SignUp, Address, PlaceOrder} from '../pages/index'
+import {Home,Cart, Heart, P404,Product,Shop, About, Contact, Sign, SignUp, Address, PlaceOrder} from '../pages/index'
 
 
 const Layout = () => {
@@ -16,7 +16,7 @@ const Layout = () => {
         <Route path='/shop'element={<Shop/>}/>
         <Route path='/about'element={<About/>}/>
         <Route path='/contact'element={<Contact/>}/>
-        <Route path='/payment'element={<Payment/>}/>
+        <Route path='/payment'element={<PlaceOrder/>}/>
         <Route path='/login'element={<Sign/>}/>
         <Route path='/signup'element={<SignUp/>}/>
         <Route path='/address'element={<Address/>}/>

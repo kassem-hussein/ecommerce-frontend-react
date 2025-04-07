@@ -13,7 +13,8 @@ const SignUp = () => {
   const dispatch= useDispatch()
   const navigate= useNavigate()
   const user  = useSelector(state=>state.user)
-  const SaveUser =()=>{
+  const SaveUser =(e)=>{
+      e.preventDefault();
       if(user.email === email){
             alert('email already exits')
             return 
@@ -30,40 +31,31 @@ const SignUp = () => {
             alert('password and repassword should be same')
             return
       }
-      
       dispatch(addInfo({username,email,password,isLogin:false,address:{}}))
       navigate('/login')
-
-
 
   }
   return (
     <div className='container myForm' >
 
             <Helmet title={"Sign-up"}>
-
                   <h1 className='text-center mt-5 mb-4'>Sign up</h1>
-                        
                   <div className='container w-100' >
-                        <div className='login-form '>
+                        <form className='form' onSubmit={SaveUser} >
                                     <label forhtml="username" className='mb-1'>username :</label>
-                                    <input type="text" id='username' required className='mb-3' onChange={(value)=>setUsername(value.target.value)} />
+                                    <input type="text" id='username' placeholder='username' required className='mb-3 form-control' onChange={(value)=>setUsername(value.target.value)} />
                                     <label forhtml="email" className='mb-1'>Emal :</label>
-                                    <input type="email" id="email" required className='mb-3' onChange={(value)=>setEmail(value.target.value)}/>
+                                    <input type="email" id="email" required placeholder='email' className='mb-3 form-control' onChange={(value)=>setEmail(value.target.value)}/>
                                     <label forhtml="password" className='mb-1'>password :</label>
-                                    <input type="password" id='password' required className='mb-3' onChange={(value)=>setPassword(value.target.value)}/>
+                                    <input type="password" id='password' required placeholder='********' className='mb-3 form-control' onChange={(value)=>setPassword(value.target.value)}/>
                                     <label forhtml="repassword" className='mb-1' >repassword :</label>
-                                    <input type="password" id="repassword" required className='mb-3' onChange={(value)=>setRepassword(value.target.value)}/>
-                                    <Button type='submit' style={{backgroundColor:'var(--orange)',border:'none'}} onClick={()=>SaveUser()}>Sign up</Button>
+                                    <input type="password" id="repassword" required placeholder='********' className='mb-3 form-control' onChange={(value)=>setRepassword(value.target.value)}/>
+                                    <Button type='submit' className="w-100">Sign up</Button>
                                     <div className='mt-3'>
                                           <span>have you an account ?   </span><Link style={{color:'var(--orange)'}} to={'/login'}>Sign in</Link>
-                                    </div>
-                                    
-                              
-                        </div>
-                                    
+                                    </div>     
+                        </form>     
                   </div>
-
             </Helmet>
     </div>
   )

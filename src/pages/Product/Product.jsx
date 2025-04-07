@@ -22,7 +22,7 @@ const Product = () => {
  }
  useEffect(()=>{
       setRelatedProduct(products.filter(p=>p.category ===product.category&&p.id !==product.id))
- },[products])
+ },[product.category, product.id, products])
   return (
     <Helmet title={product.productName}>
       <Row>
@@ -34,7 +34,7 @@ const Product = () => {
                   <h6>${product.price}</h6>  
                   <h5>review ({product.avgRating}) <Review number={product.avgRating}/></h5>
                   <p>{product.description}</p>      
-                  <Button onClick={()=>addItem()} style={{backgroundColor:'var(--orange)',border:'none'}}>Add to cart </Button>
+                  <Button onClick={()=>addItem()}>Add to cart </Button>
                 
             
             </Col>

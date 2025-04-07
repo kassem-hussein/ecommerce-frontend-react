@@ -20,8 +20,8 @@ const Footer = () => {
 
         <Col  lg={3} md={4} sm={3} className='d-flex flex-column  mb-5 mb-lg-0'>
           <div className='quick-link-title'></div>
-          <Link to={"/cart"}  className='footer-link'>your cart</Link>
-          <Link to={"/heart"} className='footer-link'>Loved products</Link>
+          <Link to={"/cart"}  className='footer-link'>cart</Link>
+          <Link to={"/heart"} className='footer-link'>wishlist</Link>
         </Col>
 
         <Col  lg={3} md={12} sm={12} className='d-flex flex-column'>

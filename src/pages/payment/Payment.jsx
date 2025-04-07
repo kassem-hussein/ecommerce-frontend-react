@@ -1,28 +1,23 @@
 import React, { useEffect,useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate} from 'react-router-dom'
-import { Steps } from '../../Components'
+import { CardInput, Steps } from '../../Components'
 import Helmet from '../../Helmet'
 import './payment.css'
 import { Button } from 'react-bootstrap'
 import { addInfo } from '../../redux/userSilce'
 const Payment = () => {
   const user =useSelector(state=>state.user)
-  const [isPaypal,setPaypal] =useState(false) 
-  const [isStripe,setStripe] =useState(false) 
+  const [payment,setPayment] =useState("cash") 
   const dispatch =useDispatch()
   const navigate =useNavigate()
   
   const savePaymentMethod =()=>{
-      if(!isPaypal && !isStripe){
+      if(!payment){
           alert('please choose payment method')
           return
       }
-      if(isPaypal){
-        dispatch(addInfo({...user,paymentMethod:'paypal'}))
-      }else{
-        dispatch(addInfo({...user,paymentMethod:'stripe'}))
-      }
+      dispatch(addInfo({...user,paymentMethod:payment}))
       navigate('/place-order')
   }
   
@@ -35,7 +30,7 @@ const Payment = () => {
         }
 
 
-  },[user,navigate,isPaypal,isStripe])
+  },[user,navigate,payment])
   return (
     <div className='container mt-5' style={{minHeight:'40vh'}}>
             <Helmet title="payment">
@@ -44,12 +39,18 @@ const Payment = () => {
               <h3 className='text-center mt-5'>Payment Method</h3>
               <div className='payment-method'>
                 <div>
-                    <input type="radio" id='paypal' name="payment-method" onChange={v=>setPaypal(v.target.value)}  className='me-1'/>
-                    <label forhtml="paypal" className='me-1'>Paypal</label>
+                    <input type="radio" id='paypal' name="payment-method" onChange={v=>setPayment('Cash')}  className='me-1'/>
+                    <label forhtml="paypal" className='me-1'>Cash</label>
                 </div>
                 <div>
-                    <input type="radio" id='stripe' name="payment-method" onChange={v=>setStripe(v.target.value)} className='me-1'/>
-                    <label forhtml="stripe" className='me-1'>Stripe</label>  
+                    <input type="radio" id='e-payment' name="payment-method" onChange={v=>setPayment('E-payment')} className='me-1'/>
+                    <label forhtml="e-payment" className='me-1'>payment</label>  
+                    {
+                      payment === 'E-payment'?<div>
+                        <CardInput/>
+                      </div>
+                      :""
+                    }
                 </div>
                 <Button type='submit' style={{backgroundColor:'var(--orange)',width:'200px',border:'none'}} onClick={()=>savePaymentMethod()} className='mt-5'>Next</Button>
               </div>

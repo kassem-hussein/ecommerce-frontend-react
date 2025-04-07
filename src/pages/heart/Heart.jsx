@@ -9,13 +9,13 @@ const Heart = () => {
 
   return (
     <div className='mt-5' style={{minHeight:'40vh'}}>
-      <Helmet title="Love products" className="">
+      <Helmet title="Wishlist" className="">
         {
               cartItem.length===0?
               <div className='d-flex justify-content-center'>
-                    <Alert className='w-50 text-center ' variant='warning'>NO Love product</Alert>    
+                    <Alert className='w-50 text-center ' variant='warning'>NO product</Alert>    
               </div> 
-              :<DisplayProducts title="Love product" products={cartItem}/>
+              :<DisplayProducts title="wishlist" products={cartItem}/>
         }
         
       </Helmet>

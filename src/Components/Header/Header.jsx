@@ -59,23 +59,19 @@ const Header = () => {
                 </Link>
               {
                 
-                visabale?<i className="N-mobile-menu ri-close-line rtate" onClick={()=>setVisable(!visabale)}></i>
+                visabale? ""
                 :<i className="N-mobile-menu ri-menu-line" onClick={()=>setVisable(!visabale)}></i>
               }
             </div>
         </nav>
         {
               visabale?<div className='N-nav-item-mobile'>
+              <i className="N-mobile-menu ri-close-line rtate align-self-end bg-body p-2" onClick={()=>setVisable(!visabale)}></i>
               <Link to={"/"}   onClick={()=>setVisable(!visabale)}     className='M-link me-1'>Home</Link>
               <Link to={"/shop"} onClick={()=>setVisable(!visabale)}    className='M-link  me-1'>Shop</Link>
               <Link to={"/about"} onClick={()=>setVisable(!visabale)}   className='M-link  me-1'>About</Link>
               <Link to={"/contact"}onClick={()=>setVisable(!visabale)}  className='M-link  me-1'>Contact-us</Link> 
-            </div>:<div className='N-nav-item-mobile hide'>
-              <Link className='M-link me-1'>Home</Link>
-              <Link className='M-link  me-1'>Shop</Link>
-              <Link className='M-link  me-1'>About</Link>
-              <Link className='M-link  me-1'>Contact-us</Link> 
-            </div>
+            </div>:""
             }
       </Container>
     </div>

@@ -72,3 +72,53 @@ li{
 textarea{
   resize: none;
 }
+
+/* Override for all nav-link elements */
+.nav-link {
+  background-color: #f8f9fa; /* Replace with your desired background color */
+  color: #000;             /* Adjust text color if needed */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover state */
+.nav-link:hover {
+  background-color: #e0e0e0; /* Replace with your desired hover background */
+  color: #000;
+}
+
+/* Active state override */
+.nav-link.active {
+  background-color: var(--orange) !important; /* Ensure priority override if needed */
+  color: #fff;
+}
+
+
+.btn.btn-primary{
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color:white;
+}
+.btn.btn-primary:hover{
+  background-color: white;
+  border-color: var(--orange);
+  color:#2E2E2E;
+}
+
+.btn.btn-primary:focus{
+  background-color: white;
+  border-color: var(--orange);
+  color:#2E2E2E;
+}
+input:focus,
+input:active
+textarea:focus,
+textarea:active,
+select:focus,
+select:active
+
+{
+  border-color: rgba(251, 160, 29, 0.5)  !important;
+  box-shadow: 0 0 0 .25rem rgba(251, 160, 29, 0.4)  !important;
+}
+
+
