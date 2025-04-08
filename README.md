@@ -67,14 +67,16 @@ Create a user-friendly e-commerce platform without integrating OAuth authenticat
 ---
 
 ## **Checkout Page**
+
 - **Steps**:
-  1. **Cart Item**: Display cart items for user.
-  2. **User Information**: User Enter his information.
-  3. **Shipping Information**: User Enter his Shipping information.
-  4. **Payment**:user Select payment type with card information if his select credit type
-     
-- **Desgin***:
-    Show checkout steps with summay in right side 
+  1. **Cart Items**: Display the items in the user's cart with product details like name, quantity, and price.
+  2. **User Information**: Allow the user to enter their personal information such as name, email, and phone number.
+  3. **Shipping Information**: Provide fields for the user to input their shipping address and select delivery options.
+  4. **Payment**: Let the user choose a payment method (e.g., credit,cash). If the user selects a credit, display fields for card details.
+
+- **Design**:
+  - Use a step-by-step layout with a progress bar to guide the user through the checkout process.
+  - Show a summary of the order (including subtotal, shipping fees, and total) on the right side of the page for quick reference.
 
 ---
 
