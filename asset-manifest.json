@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ecommerce-frontend-react/static/css/main.b107b31e.css",
-    "main.js": "/ecommerce-frontend-react/static/js/main.d36dd47a.js",
+    "main.js": "/ecommerce-frontend-react/static/js/main.6e48e717.js",
     "static/media/single-sofa-01.jpg": "/ecommerce-frontend-react/static/media/single-sofa-01.db24b9feed7582c4e98d.jpg",
     "static/media/arm-chair-03.jpg": "/ecommerce-frontend-react/static/media/arm-chair-03.3249f382638c86196acd.jpg",
     "static/media/single-sofa-03.jpg": "/ecommerce-frontend-react/static/media/single-sofa-03.0d976c067034347df78d.jpg",
@@ -35,10 +35,10 @@
     "static/media/fa-v4compatibility.woff2": "/ecommerce-frontend-react/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
     "index.html": "/ecommerce-frontend-react/index.html",
     "main.b107b31e.css.map": "/ecommerce-frontend-react/static/css/main.b107b31e.css.map",
-    "main.d36dd47a.js.map": "/ecommerce-frontend-react/static/js/main.d36dd47a.js.map"
+    "main.6e48e717.js.map": "/ecommerce-frontend-react/static/js/main.6e48e717.js.map"
   },
   "entrypoints": [
     "static/css/main.b107b31e.css",
-    "static/js/main.d36dd47a.js"
+    "static/js/main.6e48e717.js"
   ]
 }
