@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
+import React,{ useState} from 'react'
 import { Container, Dropdown } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Header.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addInfo } from '../../redux/userSilce'
@@ -10,11 +10,15 @@ const Header = () => {
   const heart = useSelector((state) => state.heart)
   const user = useSelector((state) => state.user)
   const dispatch =useDispatch()
+  const navigate =useNavigate()
   const count =cart.length
   const loveProductCount =heart.length
   const removeUser =()=>{
-    dispatch(addInfo({}))
+    dispatch(addInfo({...user,isLogin:false}))
+    navigate('/login');
   }
+
+ 
   return (
     <div className='N-bg-color'>
       <Container className='N-height'>

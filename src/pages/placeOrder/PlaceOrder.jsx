@@ -27,10 +27,13 @@ const PlaceOrder = () => {
   const tax =(itemPrice*(20/100)).toFixed(2)
   const total =(Number(itemPrice) + Number(tax) + Number(shipping)).toFixed(2)
   useEffect(()=>{
-    if(Object.keys(user).length ===0){
+    if(!user.isLogin){
       navigate('/login')
     }
-  },[user,navigate])
+    if(cart.length === 0){
+      navigate('/shop')
+    }
+  },[user,cart,navigate])
 
   const handleSubmit =  (e)=>{
     e.preventDefault();

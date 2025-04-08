@@ -109,7 +109,7 @@ const Cart = () => {
                                     <h6>Total</h6>
                                     <span className='me-5'>${total}</span>
                               </div>
-                              <Button className='w-100 p-2' onClick={()=>navigate("/payment")}>Checkout</Button> 
+                              <Button className='w-100 p-2 mt-3' onClick={()=>navigate("/payment")}>Checkout</Button> 
                                     
                         </section>    
                   </div>

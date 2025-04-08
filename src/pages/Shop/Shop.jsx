@@ -6,60 +6,44 @@ import { Button, Modal } from 'react-bootstrap';
 import Helmet from '../../Helmet';
 import { SearchComponent } from '../../Components';
 const Shop = () => {
-  const [min ,setMin] =useState(0)
-  const [max,setMax]  =useState(100)
-  const [isSofa,setSofa] =useState(false)
-  const [isChair,setChair] =useState(false)
-  const [show,setShow] =useState(false)
-  const [isMobile,setMobile] =useState(false)
-  const [isWatch,setWatch] =useState(false)
-  const [isWireless,setWireless] =useState(false)
-  const [isPrice,setIsPrice] = useState(false)
-  const [isFilter,setIsFilter] =useState(false)
-  const products =useSelector(state=>state.products)
-  const [productsFilter ,setProduct] =useState(products)
-
-  let applayFilter =(e)=>{
-      let myfilter =[]
-      
-      if(isSofa){
-         myfilter =  products.filter(p=>p.category ==="sofa")
-      }if(isChair){
-        myfilter = [...myfilter,...products.filter(p=>p.category ==="chair")]
-      }if(isMobile){
-        myfilter = [...myfilter,...products.filter(p=>p.category ==="mobile")]   
-      }if(isWatch){
-            myfilter = [...myfilter,...products.filter(p=>p.category ==="watch")]   
-      }if(isWireless){
-            myfilter = [...myfilter,...products.filter(p=>p.category ==="wireless")]   
-      }
-      if(isPrice){
-            myfilter =products.filter(p=>p.price >=min && p.price <=max)
-      }
-      setIsFilter(true)
-      setProduct(myfilter)
-      e.currentTarget.blur();
+      const products =useSelector(state=>state.products)
+      const [selectedCategories, setSelectedCategories] = useState([]);
+      const [priceRange, setPriceRange] = useState([0, 1000]);
+      const [filteredProducts, setFilteredProducts] = useState(products);
+      const [show,setShow] =  useState(false);
+      const [isFilter,setIsFilter] =  useState(false);
+    
+      const handleFilter = () => {
+            const results = products.filter(
+            (product) =>
+            (selectedCategories.length === 0 || selectedCategories.includes(product.category)) &&
+            product.price >= priceRange[0] &&
+            product.price <= priceRange[1]
+            );
+            setFilteredProducts(results);
+            setIsFilter(true);
+      };
+  
+    const handleCategoryChange = (category) => {
+      setSelectedCategories((prev) =>
+        prev.includes(category)
+          ? prev.filter((cat) => cat !== category)
+          : [...prev, category]
+      );
+    };
 
 
-  }
   let handleSearch =(query)=>{
-      if(query==='') setProduct(products);
-      setProduct(products.filter(p=>p.productName.toLowerCase().includes(query.toLowerCase())))
+      if(query==='') setFilteredProducts(products);
+      setFilteredProducts(products.filter(p=>p.productName.toLowerCase().includes(query.toLowerCase())))
       
   }
-//   useEffect(()=>{
-//       handleSearch()
-//   },[Search])
+
   let ClearFilter =()=>{
-      setMin(0)
-      setMax(100)
-      setChair(false)
-      setMobile(false)
-      setSofa(false)
-      setWatch(false)
-      setWireless(false)
-      setIsFilter(false)
-      setProduct(products)
+      setFilteredProducts(products)
+      setSelectedCategories([]);
+      setIsFilter(false);
+      setPriceRange([0,1000])
   }
   return (
     <Helmet title="Shop">
@@ -71,37 +55,37 @@ const Shop = () => {
                         <h6>Category</h6>
                         <hr/>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='sofa' value="sofa"checked={isSofa}  onChange={()=>{setSofa(!isSofa)}}/>
+                              <input type="checkbox" name="" id='sofa' checked={selectedCategories.includes('sofa')} value="sofa"  onChange={()=>handleCategoryChange('sofa')}/>
                               <label htmlFor="sofa">Sofa</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='chair' checked={isChair}  value="chair" onChange={()=>{setChair(!isChair)}}/>
+                              <input type="checkbox" name="" id='chair' checked={selectedCategories.includes('chair')}  value="chair" onChange={()=>handleCategoryChange('chair')}/>
                               <label htmlFor="chair">Chair</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='mobile' checked={isMobile} value="mobile" onChange={()=>{ setMobile(!isMobile)}}/>
+                              <input type="checkbox" name="" id='mobile'checked={selectedCategories.includes('mobile')} value="mobile" onChange={()=>{handleCategoryChange('mobile')}}/>
                               <label htmlFor="mobile">Mobile</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='watch' value="watch" checked={isWatch}  onChange={()=>{ setWatch(!isWatch)}}/>
+                              <input type="checkbox" name="" id='watch' value="watch" checked={selectedCategories.includes('watch')}  onChange={()=>handleCategoryChange('watch')}/>
                               <label htmlFor="watch">Watch</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='wireless' value="wireless" checked={isWireless} onChange={()=>{ setWireless(!isWireless)}}/>
+                              <input type="checkbox" name="" id='wireless' value="wireless" checked={selectedCategories.includes('wireless')} onChange={()=>{handleCategoryChange('wireless')}}/>
                               <label htmlFor="wireless">Wireless</label>   
                         </div>
                         <h6 className='mt-4'>Price</h6>
                         <hr/>
                         <div className='d-flex align-align-items-center mb-1'>
                               <label htmlFor="price-min" className="price-label">From</label>
-                              <input type="range" min={50} max={500} id="price-min" value={min} onChange={(v)=>{ setMin(v.target.value);setIsPrice(true)}} />
-                              <span className='price'>{min}</span>
+                              <input type="range" min={50} max={500} id="price-min" value={priceRange[0]} onChange={(v)=>{setPriceRange([parseInt(v.target.value),priceRange[1]])}} />
+                              <span className='price'>{priceRange[0]}</span>
                               
                         </div>
                         <div className='d-flex align-align-items-center'>
                               <label htmlFor="price-max" className='price-label'>To</label>
-                              <input type="range" min={100} max={5000}  id="price-max" value={max} onChange={(v)=>{ setMax(v.target.value);setIsPrice(true)}} />
-                              <span className='price'>{max}</span>
+                              <input type="range" min={0} max={5000}  id="price-max" value={priceRange[1]} onChange={(v)=>setPriceRange([priceRange[0],parseInt(v.target.value)])} />
+                              <span className='price'>{priceRange[1]}</span>
                               
                         </div>
                         <div className='d-flex'>
@@ -109,7 +93,7 @@ const Shop = () => {
                               <Button type='button' style={{backgroundColor:"#2E2E2E",borderColor:'#2E2E2E'}}  className='w-25 mt-3 me-1 clearBtn' onClick={()=>ClearFilter()}>
                                     <i className="fas fa-times"></i>
                               </Button>
-                              <Button  className='w-75 mt-3 ' onClick={(e)=>applayFilter(e)}>Apply Filter</Button>
+                              <Button  className='w-75 mt-3 ' onClick={(e)=>handleFilter(e)}>Apply Filter</Button>
                         </div>
       </section>
       <Modal 
@@ -127,44 +111,44 @@ const Shop = () => {
                         <h6>Category</h6>
                         <hr/>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='sofa' value="sofa"checked={isSofa}  onChange={()=>{setSofa(!isSofa)}}/>
+                              <input type="checkbox" name="" id='sofa'  checked={selectedCategories.includes('sofa')} value="sofa"  onChange={()=>handleCategoryChange('sofa')}/>
                               <label for="sofa">Sofa</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='chair' checked={isChair}  value="chair" onChange={()=>{setChair(!isChair)}}/>
+                              <input type="checkbox" name="" id='chair'checked={selectedCategories.includes('chair')}   value="chair" onChange={()=>handleCategoryChange('chair')}/>
                               <label for="chair">Chair</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='mobile' checked={isMobile} value="mobile" onChange={()=>{ setMobile(!isMobile)}}/>
+                              <input type="checkbox" name="" id='mobile' checked={selectedCategories.includes('mobile')} value="mobile" onChange={()=>handleCategoryChange('mobile')}/>
                               <label for="mobile">Mobile</label>   
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='watch' value="watch" checked={isWatch}  onChange={()=>{ setWatch(!isWatch)}}/>
-                              <label for="watch">Watch</label>   
+                              <input type="checkbox" name="" id='watch' value="watch" checked={selectedCategories.includes('watch')}  onChange={()=>handleCategoryChange('watch')}/>
+                              <label for="watch">Watch</label> 
                         </div>
                         <div className='Shop-filter-item'>
-                              <input type="checkbox" name="" id='wireless' value="wireless" checked={isWireless} onChange={()=>{ setWireless(!isWireless)}}/>
+                              <input type="checkbox" name="" id='wireless' value="wireless" checked={selectedCategories.includes('wireless')} onChange={()=>handleCategoryChange('wireless')}/>
                               <label for="wireless">Wireless</label>   
                         </div>
                         <h6 className='mt-4'>Price</h6>
                         <hr/>
                         <div className='d-flex align-align-items-center mb-1'>
                               <label for="price-min" className="price-label">From</label>
-                              <input type="range" min={50} max={500} id="price-min" value={min} onChange={(v)=>{ setMin(v.target.value)}} />
-                              <span className='price'>{min}</span>
+                              <input type="range" min={50} max={500} id="price-min" value={priceRange[0]} onChange={(v)=>setPriceRange([parseInt(v.target.value),priceRange[1]])} />
+                              <span className='price'>{priceRange[0]}</span>
                               
                         </div>
                         <div className='d-flex align-align-items-center'>
                               <label for="price-max" className='price-label'>To</label>
-                              <input type="range" min={100} max={5000} id="price-max" value={max} onChange={(v)=>{ setMax(v.target.value)}} />
-                              <span className='price'>{max}</span>
+                              <input type="range" min={100} max={5000} id="price-max" value={priceRange[1]} onChange={(v)=>setPriceRange([priceRange[0],parseInt(v.target.value)])} />
+                              <span className='price'>{priceRange[1]}</span>
                               
                         </div>
                         <div className='d-flex'>
                               <Button type='button' style={{backgroundColor:"#2E2E2E",borderColor:'#2E2E2E'}}  className='w-25 mt-3 me-1 clearBtn' onClick={()=>ClearFilter()}>
                                     <i className="fas fa-times"></i>
                               </Button>
-                              <Button  className='w-50 mt-3' onClick={(e)=>applayFilter(e)}>Apply Filter</Button>
+                              <Button  className='w-50 mt-3' onClick={(e)=>handleFilter(e)}>Apply Filter</Button>
                         </div>
             </section>
         </Modal.Body>
@@ -179,16 +163,18 @@ const Shop = () => {
             <section className='products w-100'>
                   <div className='search-input'> 
                        <SearchComponent  onSearch={handleSearch}/>
-                        <div>
+                        <div className="d-flex align-items-center">
+                              <i title='show fillter' className="ri-filter-line filter-icon " onClick={()=>setShow(!show)}></i>
                               {
-                                    isFilter?<i className="ri-filter-off-line filter-icon" onClick={()=>ClearFilter()}></i>
-                                    : <i className="ri-filter-line filter-icon " onClick={()=>setShow(!show)}></i>
+                                    isFilter?<i title='clear filter' className="ri-filter-off-line filter-icon" onClick={()=>ClearFilter()}></i>
+                                    :""
+                                      
                               }
-                             
+                  
                               
                         </div>
                   </div>
-                  <DisplayProducts  products={productsFilter}/>
+                  <DisplayProducts  products={filteredProducts}/>
             </section>    
       </div>
     </Helmet>
