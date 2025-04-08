@@ -72,8 +72,16 @@ Create a user-friendly e-commerce platform without integrating OAuth authenticat
   2. **User Information**: User Enter his information.
   3. **Shipping Information**: User Enter his Shipping information.
   4. **Payment**:user Select payment type with card information if his select credit type
-  **Desgin***:
+     
+- **Desgin***:
     Show checkout steps with summay in right side 
 
 ---
+
+## Technologies Used
+- **Front-end**: Reactjs
+- **CSS Framewordk**: Bootstrap 5
+- **State Managment**: Redux toolkit
+- **Icons**: Fontaswome
+- **Fonts**: google Fonts
 
